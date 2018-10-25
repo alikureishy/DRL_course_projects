@@ -7,6 +7,12 @@ AVERAGING_WINDOW = 100
 class BananaTracker(object):
     
     def __init__(self, num_episodes):
+        """Constructor
+        
+        Params
+        ======
+            num_episodes (int): the number of episodes that are to be tracked
+        """
         self.scores = np.zeros(num_episodes, dtype=np.int32)
         self.positives = np.zeros(num_episodes, dtype=np.int32)
         self.positive_counts = np.zeros(num_episodes, dtype=np.int32)
@@ -20,6 +26,14 @@ class BananaTracker(object):
         self.num_episodes = num_episodes
         
     def step(self, episode, reward, done):
+        """Save reward of a step taken for a given episode 
+        
+        Params
+        ======
+            episode (int): the episode number
+            reward (int): reward obtained on the last step
+            done (bool): whether this was the last step of the episode
+        """
         assert episode >= 0 and episode < self.num_episodes, "Invalid episode number: {}".format(episode)
 
         self.step_counts[episode] += 1
@@ -43,28 +57,25 @@ class BananaTracker(object):
                 self.running_averages[episode] = np.mean(self.scores[0:episode])
 
     def plot(self):
+        """Plot various statistics captured by the tracker
+        """
         episodes = np.arange(1, self.num_episodes+1)
         self.__plot__("Accuracy", episodes, "Episode", self.accuracies, "Accuracy", id=311) 
         self.__plot__("Scores", episodes, "Episode", self.scores, "Score", id=312) 
         self.__plot__("{}-Episode Running Averages".format(AVERAGING_WINDOW), episodes, "Episode", self.running_averages, "{}-Episode Average Score".format(AVERAGING_WINDOW), id=313)
         plt.show()
             
-    def plot_accuracies(self):
-        episodes = np.arange(1, self.num_episodes+1)
-        self.__plot__("Accuracy", episodes, "Episode", self.accuracies, "Accuracy") 
-        plt.show()
-    
-    def plot_scores(self):
-        episodes = np.arange(1, self.num_episodes+1)
-        self.__plot__("Scores", episodes, "Episode", self.scores, "Score") 
-        plt.show()
-
-    def plot_running_averages(self):
-        episodes = np.arange(1, self.num_episodes+1)
-        self.__plot__("{}-Episode Running Averages".format(AVERAGING_WINDOW), episodes, "Episode", self.running_averages, "{}-Episode Average Score".format(AVERAGING_WINDOW))
-        plt.show()
-
     def __plot__(self, title, xvalues, xlabel, yvalues, ylabel, id=111):
+        """Generic plot utility to plot the given values and labels
+        
+        Params
+        ======
+            title (string): graph title
+            xvalues (list): list of values for the x-axis
+            xlabel (string): label of the x-axis
+            yvalues (list): list of values for the y-axis
+            ylabel (string): label of the y-axis
+        """
         fig = plt.figure()
         ax = fig.add_subplot(id)
         ax.plot(xvalues, yvalues)

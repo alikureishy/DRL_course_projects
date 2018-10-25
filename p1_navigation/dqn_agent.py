@@ -17,7 +17,7 @@ LR = 5e-4               # learning rate
 UPDATE_EVERY = 40       # how often to update the network
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-print ("!!! DEVICE ==> {} !!!".format(device))
+print ("DEVICE being used ==> {}".format(device))
 
 class Agent():
     """Interacts with and learns from the environment."""
@@ -30,6 +30,7 @@ class Agent():
             state_size (int): dimension of each state
             action_size (int): dimension of each action
             seed (int): random seed
+            training (bool): false if the agent is NOT being trained. true otherwise.
         """
         self.state_size = state_size
         self.action_size = action_size
@@ -48,15 +49,37 @@ class Agent():
         self.t_step = 0
 
     def save(self, checkpoint_file):
+        """Save the Q-network aprameters to the given file.
+        
+        Params
+        ======
+            checkpoint_file (string): path of the file into which to save the parameters
+        """
         torch.save(self.qnetwork_local.state_dict(), checkpoint_file)
 
     def load(self, checkpoint_file):
+        """Load the Q-network aprameters from the given file.
+        
+        Params
+        ======
+            checkpoint_file (string): path of the file from which to load the parameters
+        """
         if os.path.exists(checkpoint_file) is True:
             self.qnetwork_local.load_state_dict(torch.load(checkpoint_file))
         else:
             print ("File {} not found. Proceeding without.".format(checkpoint_file))
             
     def step(self, state, action, reward, next_state, done):
+        """Let the agent know that a tuple of <state, action, reward, next_state> was received from the environment.
+        
+        Params
+        ======
+            state (list): a list of values reflecting the state of the environment
+            action (int): an integer representing the action that was taken from that state
+            reward (int): the reward that was received from the environment after the above action
+            next_state (list): a list of values reflecting the next state the environment reached
+            done (bool): a flag indicating whether this was the last tuple for this episode
+        """
         if self.training is True:
             # Save experience in replay memory
             self.memory.add(state, action, reward, next_state, done)
@@ -69,7 +92,7 @@ class Agent():
                     experiences = self.memory.sample()
                     self.__learn__(experiences, GAMMA)
         else:
-            assert False, "Agent is not in training mode. The step() method should only be used when the agent is in training mode"
+            assert False, "Agent is not in training mode. The step() method should only be used when in training mode."
 
     def act(self, state, eps=0.):
         """Returns actions for given state as per current policy.
