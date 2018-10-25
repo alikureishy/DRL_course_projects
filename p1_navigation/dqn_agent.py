@@ -7,13 +7,14 @@ from model import QNetwork
 import torch
 import torch.nn.functional as F
 import torch.optim as optim
+import os
 
 BUFFER_SIZE = int(1e5)  # replay buffer size
 BATCH_SIZE = 128         # minibatch size
 GAMMA = 0.99            # discount factor
 TAU = 1e-3              # for soft update of target parameters
 LR = 5e-4               # learning rate 
-UPDATE_EVERY = 20       # how often to update the network
+UPDATE_EVERY = 40       # how often to update the network
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print ("!!! DEVICE ==> {} !!!".format(device))
@@ -50,8 +51,11 @@ class Agent():
         torch.save(self.qnetwork_local.state_dict(), checkpoint_file)
 
     def load(self, checkpoint_file):
-        self.qnetwork_local.load_state_dict(torch.load(checkpoint_file))
-        
+        if os.path.exists(checkpoint_file) is True:
+            self.qnetwork_local.load_state_dict(torch.load(checkpoint_file))
+        else:
+            print ("File {} not found. Proceeding without.".format(checkpoint_file))
+            
     def step(self, state, action, reward, next_state, done):
         if self.training is True:
             # Save experience in replay memory
