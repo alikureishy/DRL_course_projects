@@ -2,7 +2,7 @@
 
 [image1]: https://github.com/safdark/DRL_course_projects/blob/master/p1_navigation/docs/screenshot_banana_bot.png "Click for video of trained agent"
 
-# Project 1: Navigation
+# Navigation - Banana Bot - Installation & Launch
 [![Click for video of trained agent][image1]](https://youtu.be/2LZEazw_taM)
 
 ## Table of Contents
