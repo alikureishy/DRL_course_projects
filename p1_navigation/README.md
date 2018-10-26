@@ -7,6 +7,31 @@
 # Project 1: Navigation
 ![Trained Agent][image1]
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Components](#components)
+	- [Simulation Environment](#simulation-environment)
+	- [Training Pipeline](#training-pipeline)
+		- [Sample Collection](#sample-collection)
+		- [Feature Extraction](#feature-extraction)
+		- [Training](#training)
+	- [Perception Pipeline](#perception-pipeline)
+		- [RGBD Camera View](#rgbd-camera-view)
+		- [Downsampling](#downsampling)
+		- [Cleaning](#cleaning)
+		- [Passthrough Filter](#passthrough-filter)
+		- [Segmentation](#segmentation)
+		- [Clustering](#clustering)
+		- [Classification](#classification)
+		- [Labeling](#labeling)
+- [Debugging](#debugging)
+- [Results](#results)
+	- [World 1](#world-1)
+	- [World 2](#world-2)
+	- [World 3](#world-3)
+- [Conclusions](#conclusions)
+
 ## Overview
 
 This project aims to train a Deep Reinforcement Learning Agent to navigate (and collect bananas!) in a large, square world. 
@@ -50,7 +75,7 @@ The task is episodic, and in order for the environment to be considered "solved"
 
 4. It is also advisable to create an IPython Kernel to use for the Notebook.
 ```
-
+>> python -m ipykernel install --user --name drlnd --display-name "drlnd"
 ```
 Now, make sure that from the Jupyter Notebook, you select the above kernel by going to "Kernel --> Change Kernel --> ___"".
 
@@ -111,21 +136,23 @@ The following hyperparameter values have been used:
 
 ## Instructions
 
+#### Visualizing agent navigating the field
+
+Open [Navigation-Trainer](https://github.com/safdark/DRL_course_projects/edit/master/p1_navigation/Navigation-Trainer.ipynb) and run all the cells. This will launch a Unity environment and use the trained agent to make the robot navigate the field picking up the yellow bananas while avoiding the blue ones. The score should fall anywhere between 14-20, using the checkpoint.pth file included with this project.
+
 #### Training the agent
 
-Open ` ` and 
-
-#### Running the agent
-
-Open ` ` and
+1. Delete the 'checkpoint.pth' file.
+2. Open the [Navigation-Visualizer](https://github.com/safdark/DRL_course_projects/edit/master/p1_navigation/Navigation-Visualizer.ipynb) notebook and run all the cells. This will take a while, depending on the speed of the CPU and the availability of a GPU.
+3. Go back to the [Navigation-Trainer](https://github.com/safdark/DRL_course_projects/edit/master/p1_navigation/Navigation-Trainer.ipynb) file to visualize the agent's performance.
 
 ## Results
 
 There are 3 graphs here.
 
-1. The first one shows the "Accuracy" with which the agent picks bananas. It is the ratio of the yellow bananas picked to the total bananas picked. In essence, it conveys how efficiently the agent picked the yellow bananas while _avoiding_ the blue bananas. Any value less than 1 just means that the agent picked up some blue bananas along the way. Obviously, the accuracy should be as close to 1 as possible.
-2. The second graph shows the actual total score per episode. Assuming a high accuracy score, this value also points to how efficiently the agent navigated the _open spaces_ to pick up as many bananas it could.
-3. The third graph is what this project is actually after. It shows the average score over the last 100 episodes, or all prior episodes, whichever is smaller. As you can see, the agent is able to finally settle on a score of ~20 over a 100-episode period, after ~2500-3000 episodes of training. It should be noted that the agent actualy hit the 13+ mark around the 1500th episode itself!
+1. The first one shows the "Accuracy" with which the agent picks bananas. It is the ratio of the yellow bananas picked to the total bananas picked. In essence, it conveys how efficiently the agent picked the yellow bananas while _avoiding_ the blue bananas. Any value less than 1 just means that the agent picked up some blue bananas along the way. Obviously, the accuracy should be as close to 1 as possible, and, as seen in this graph below, the agent reaches quite close to that.
+2. The second graph shows the actual total score per episode. Assuming a high accuracy score, this value also points to how efficiently the agent navigated the _open spaces_ to pick up as many bananas it could. In the graph below, the agent reaches a score in the vicinity of ~20.
+3. The third graph is what this project is actually after. It shows the average score over the last 100 episodes, or all prior episodes, whichever is smaller. As you can see, the agent is able to finally settle on a score of ~20 over a 100-episode period, after ~2500-3000 episodes of training. However, it should be noted that the agent here hit the 13+ mark around the 1500th episode itself!
 
 ![Performance Graph][image2]
 
