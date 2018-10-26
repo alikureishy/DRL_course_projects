@@ -5,7 +5,7 @@
 [image3]: https://github.com/safdark/DRL_course_projects/blob/master/p1_navigation/docs/screenshot_q_learning_algorithm.png "Q-Learning"
 
 # Project 1: Navigation
-![Trained Agent][image1]
+[![Trained Agent][image1]](https://youtu.be/2LZEazw_taM "Click to see video on youtube")
 
 ## Table of Contents
 
