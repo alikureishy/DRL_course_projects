@@ -1,11 +1,11 @@
 [//]: # (Image References)
 
-[image1]: https://github.com/safdark/DRL_course_projects/blob/master/p1_navigation/docs/screenshot_banana_bot.png "Trained Agent"
+[image1]: https://github.com/safdark/DRL_course_projects/blob/master/p1_navigation/docs/screenshot_banana_bot.png "Click for video of trained agent"
 [image2]: https://github.com/safdark/DRL_course_projects/blob/master/p1_navigation/docs/screenshot_bananan_bot_graph.png "Performance Graph"
 [image3]: https://github.com/safdark/DRL_course_projects/blob/master/p1_navigation/docs/screenshot_q_learning_algorithm.png "Q-Learning"
 
 # Project 1: Navigation
-[![Trained Agent][image1]](https://youtu.be/2LZEazw_taM "Click to see video on youtube")
+[![Click for video of trained agent][image1]](https://youtu.be/2LZEazw_taM)
 
 ## Table of Contents
 
