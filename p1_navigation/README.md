@@ -1,6 +1,6 @@
 [//]: # (Image References)
 
-[image1]: https://user-images.githubusercontent.com/10624937/42135619-d90f2f28-7d12-11e8-8823-82b970a54d7e.gif "Trained Agent"
+[image1]: https://github.com/safdark/DRL_course_projects/blob/master/p1_navigation/docs/screenshot_banana_bot.png "Trained Agent"
 
 # Project 1: Navigation
 ![Trained Agent][image1]
