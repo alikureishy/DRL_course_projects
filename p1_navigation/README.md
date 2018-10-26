@@ -10,27 +10,19 @@
 ## Table of Contents
 
 - [Overview](#overview)
-- [Components](#components)
-	- [Simulation Environment](#simulation-environment)
-	- [Training Pipeline](#training-pipeline)
-		- [Sample Collection](#sample-collection)
-		- [Feature Extraction](#feature-extraction)
-		- [Training](#training)
-	- [Perception Pipeline](#perception-pipeline)
-		- [RGBD Camera View](#rgbd-camera-view)
-		- [Downsampling](#downsampling)
-		- [Cleaning](#cleaning)
-		- [Passthrough Filter](#passthrough-filter)
-		- [Segmentation](#segmentation)
-		- [Clustering](#clustering)
-		- [Classification](#classification)
-		- [Labeling](#labeling)
-- [Debugging](#debugging)
+- [Installation](#installation)
+- [Implementation](#implementation)
+	- [Driver](#driver)
+	- [Q-Learning Agent](#q-learning-agent)
+	- [Deep Q-Network](#deep-q-network)
+		- [Network Architecture](#network-architecture)
+- [Instructions](#instructions)
+	- [Visualizing the trained agent](#visualizing-the-trained-agent)
+	- [Training the agent](#training-the-agent)
 - [Results](#results)
-	- [World 1](#world-1)
-	- [World 2](#world-2)
-	- [World 3](#world-3)
-- [Conclusions](#conclusions)
+- [Future Enhancements](#future-enhancemets)
+- [Appendix](#appendix)
+	- [Learning from Pixels](#learning-from-pixels)
 
 ## Overview
 
@@ -136,7 +128,7 @@ The following hyperparameter values have been used:
 
 ## Instructions
 
-#### Visualizing agent navigating the field
+#### Visualizing the trained agent
 
 Open [Navigation-Trainer](https://github.com/safdark/DRL_course_projects/edit/master/p1_navigation/Navigation-Trainer.ipynb) and run all the cells. This will launch a Unity environment and use the trained agent to make the robot navigate the field picking up the yellow bananas while avoiding the blue ones. The score should fall anywhere between 14-20, using the checkpoint.pth file included with this project.
 
